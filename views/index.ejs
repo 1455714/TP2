@@ -18,6 +18,19 @@
 <div class="text"><button type="submit">+</button></div>
       
 
+  </form>
+
+    <% for(var i=0; i<carnet.length; i++) {%>
+    <form class="table-row " action ="/update" method="POST">
+        <input type="text" class="text" name="nom" value="<%= carnet[i].nom %>"></input>
+    <input type="text" class="text" name="prenom" value="<%= carnet[i].prenom %>"></input>
+    <input type="text" class="text" name="telephone" value="<%= carnet[i].telephone %>"></input>
+    <input type="text" class="text" value="<%= carnet[i]._id %>"></input>
+        <div class="text"><button type="submit" class="formUpdate">change</button></div>
+            <input type="hidden" name="_id" value="<%= carnet[i]._id %>">
+            <div class="text"><button type="" formaction="" class="formDelete">x</button></div>
+  </form>
+  <% } %>
 </div>
 <script type="text/javascript" src="script/client.js"></script>
 </body>
