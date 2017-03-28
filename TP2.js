@@ -20,7 +20,32 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet', (err, database) => {
 
 
 
+
+//page de base
+app.get('/',  (req, res) => {
+   console.log('la route route get / = ' + req.url)
+   //récupère la bdd
+    var cursor = db.collection('carnet').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // affiche le contenu de la BD
+    res.render('index.ejs', {carnet: resultat})
+
+    }) 
 })
+
+
+//lorsqu'on ajoute une adresse
+app.post('/ajout',  (req, res) => {
+  db.collection('carnet').save({'nom':req.body[0].value,
+  "telephone":req.body[2].value,"prenom":req.body[1].value}, (err, result) => {
+      if (err) return console.log(err)
+      console.log('sauvegarder dans la BD')
+      //console.log(result[3].value);
+      console.log(result.ops[0]._id);
+      res.send(result.ops[0]._id);
+    })
+})
+
 
 
 
