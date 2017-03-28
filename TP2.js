@@ -46,6 +46,18 @@ app.post('/ajout',  (req, res) => {
     })
 })
 
+//lorsqu'on delete une adresse
+app.post('/delete',  function(req, res){
+  //supprime l'adresse sélectionnée
+db.collection('carnet').remove ({_id: ObjectId(req.body["_id"])}, (err, result) => {
+  if (err) {return console.log(err)}
+    //retourne à la page de base
+      res.end()
+    })
+})
+
+
+
 
 
 
