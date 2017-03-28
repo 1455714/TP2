@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Mon Application</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid" style="margin-top: 10px">
+
+  <form class="table-row header" action="/ajout" method="POST" id="ajout">
+      <input type="text" class="text" name="nom" value="Nom"></input>
+    <input type="text" class="text" name="prenom" value="Prénom"></input>
+    <input type="text" class="text" name="telephone" value="Téléphone"></input>
+    <input type="text" class="text" value=""></input>
+    <input type="text" class="text" value=""></input>
+<div class="text"><button type="submit">+</button></div>
+      
+
+  </form>
+
+    <% for(var i=0; i<carnet.length; i++) {%>
+    <form class="table-row " action ="/update" method="POST">
+        <input type="text" class="text" name="nom" value="<%= carnet[i].nom %>"></input>
+    <input type="text" class="text" name="prenom" value="<%= carnet[i].prenom %>"></input>
+    <input type="text" class="text" name="telephone" value="<%= carnet[i].telephone %>"></input>
+    <input type="text" class="text" value="<%= carnet[i]._id %>"></input>
+        <div class="text"><button type="submit" class="formUpdate">change</button></div>
+            <input type="hidden" name="_id" value="<%= carnet[i]._id %>">
+            <div class="text"><button type="" formaction="" class="formDelete">x</button></div>
+  </form>
+  <% } %>
+</div>
+<script type="text/javascript" src="script/client.js"></script>
+</body>
+
+</html>
