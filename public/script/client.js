@@ -64,5 +64,33 @@
                         console.log("réussite!");
                 }});
         }); 
-
+     
+//gère le form pour ajouter
+$('#ajout').on('submit', function(e) {
+    //empêche la page d'actualiser
+    e.preventDefault(); 
+    
+    console.log(this);
+        $.ajax({
+            type:"post",
+            url:"/ajout",
+            dataType: 'json',
+                //envoie les infos au serveur
+                data: JSON.stringify($(this).serializeArray()),
+                contentType: 'application/json',
+                complete: function(data){
+                    console.log(data.responseText);
+                    //ajoute qqch
+                   /* elm = document.createElement('form');
+                    elm.setAttribute("class","table-row");
+                    elm.setAttribute("action","/update");
+                    elm.setAttribute("method","POST");
+                     $('.container-fluid').append(elm);
+                     $('.container-fluid form:last-child').append('<input type="text" class="text" name="nom" value="Nom"></input><input type="text" class="text" name="prenom" value="Prenom"></input><input type="text" class="text" name="telephone" value="Téléphone"></input><input type="text" class="text" value='+data.responseText+'></input><div class="text"><button type="submit" class="formUpdate">change</button></div><input type="hidden" name="_id"  value='+data.responseText+'><div class="text"><button type="submit" formaction="/delete" class="formDelete">x</button></div>')*/
+                    
+    $('.container-fluid').append('<form class="table-row " action ="/update" method="POST"><input type="text" class="text" name="nom" value="Nom"></input><input type="text" class="text" name="prenom" value="Prenom"></input><input type="text" class="text" name="telephone" value="Téléphone"></input><input type="text" class="text" value='+data.responseText+'></input><div class="text"><button type="submit" class="formUpdate">change</button></div><input type="hidden" name="_id"  value='+data.responseText+'><div class="text"><button type="submit" formaction="/delete" class="formDelete">x</button></div></form>')
+            $('.container-fluid form:last-child').css('background-color','lightyellow');
+                }
+        });
+    });
 });
