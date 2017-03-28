@@ -57,7 +57,18 @@ db.collection('carnet').remove ({_id: ObjectId(req.body["_id"])}, (err, result) 
 })
 
 
-
+//lorsqu'on confirme l'update d'une adresse
+app.post('/update',  function(req, res){
+  //collecte les valeurs entrées pour changer l'adresse sélectionnée
+db.collection('carnet').update ({_id: ObjectId(req.body["_id"])},{$set:{'nom':req.body["nom"],
+  "telephone":req.body["telephone"],"prenom":req.body["prenom"]}}, (err, result) => {
+  if (err) {return console.log(err)}
+      console.log("reussi !");
+      //retourne à la page de base
+      //res.redirect('/') 
+      res.end()
+  })
+})
 
 
 
